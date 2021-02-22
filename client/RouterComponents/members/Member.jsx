@@ -174,11 +174,8 @@ function MemberPublic({
 
 export default Member = withTracker(({ match, history }) => {
   const { username } = match.params;
-  const publicMemberSubscription = Meteor.subscribeLite(
-    'memberAtHost',
-    username
-  );
-  const publicMemberWorksSubscription = Meteor.subscribeLite(
+  const publicMemberSubscription = Meteor.subscribe('memberAtHost', username);
+  const publicMemberWorksSubscription = Meteor.subscribe(
     'memberWorksAtHost',
     username
   );
