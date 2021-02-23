@@ -20,14 +20,17 @@ Meteor.startup(() => {
   };
 
   Meteor.users.find().forEach((user) => {
-    Meteor.users.updateOne(user._id, {
-      $push: {
-        memberships: {
-          host: 'circles.market',
-          role: user.memberships[0].role,
-          date: user.memberships[0].date,
+    Meteor.users.update(
+      { _id: user._id },
+      {
+        $push: {
+          memberships: {
+            host: 'circles.market',
+            role: user.memberships[0].role,
+            date: user.memberships[0].date,
+          },
         },
-      },
-    });
+      }
+    );
   });
 });
